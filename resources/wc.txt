@@ -1,0 +1,65 @@
+
+Starg Job History server
+------------------------
+sbin/mr-jobhistory-daemon.sh --config /opt/hadoop_ecosystem/hadoop-2.6.0/etc/hadoop/ start historyserver
+
+To aggregate job logs
+<property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>true</value>
+</property>
+
+
+Word count jar command
+----------------------
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.wordcount.WordCountMR -files input.txt wc1 /input/wcinput/input.txt /output/wcoutput/3/
+
+
+Distributed Cache file
+----------------------
+
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.mapsidejoin.JoinMR -files input.txt wc1 /input/wcinput/input.txt /output/wcoutput/31/
+
+DScache file : /tmp/hadoop-huser/nm-local-dir/usercache/huser/appcache/application_1443115485185_0007/container_1443115485185_0007_01_000002/input.txt
+
+
+Seq file example
+----------------
+
+> 2 types recor, block
+
+> merging small files to seq 
+
+- 
+
+key               value
+
+filepath         files content
+
+
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.seqfileexample.TextToSequenceDriver /input/sqinput/sqinput.txt /output/sqoutput/2_1/
+
+htxt /output/sqoutput/1_1/part*
+
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.seqfileexample.SequenceToTextDriver /output/sqoutput/2_1/ /output/sqoutput/2_2/
+
+hcat /output/sqoutput/1_2/part*
+
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.seqfileexample.TextToBlckCompSequenceDriver /output/sqoutput/1_2/ /output/sqoutput/1_3/
+
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.seqfileexample.SmallFilesToSequence /input/wcinput/ /output/3
+
+KV Input
+--------
+-files
+-libjar
+-D
+-conf
+
+
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.inputformats.KVInputDriver -D noofcolms=false -D mapreduce.output.textoutputformat.separator=";" /input/wcinput/kvinput.txt /output/wcoutput/5/
+
+NLineInputFormat
+-----------------
+
+hadoop jar wordcount-0.0.1-SNAPSHOT.jar com.sunilapp.inputformats.NLineinputDriver -conf input.conf /input/wcinput/kvinput.txt /output/wcoutput/52/
