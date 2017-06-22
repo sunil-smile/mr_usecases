@@ -18,8 +18,8 @@ public class SmallFilesToSequence {
 		// TODO Auto-generated method stub
 
 		Configuration conf = new Configuration();
-		conf.addResource(new Path("/opt/hadoop_ecosystem/hadoop-2.6.0/etc/hadoop/core-site.xml"));
-		conf.addResource(new Path("/opt/hadoop_ecosystem/hadoop-2.6.0/etc/hadoop/hdfs-site.xml"));
+		/*conf.addResource(new Path("/opt/hadoop_ecosystem/hadoop-2.6.0/etc/hadoop/core-site.xml"));
+		conf.addResource(new Path("/opt/hadoop_ecosystem/hadoop-2.6.0/etc/hadoop/hdfs-site.xml"));*/
 		FileSystem fs = FileSystem.get(conf);
 		Path inputFile = new Path(args[0]);
 		Path outputFile = new Path(args[1]);

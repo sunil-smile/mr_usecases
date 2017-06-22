@@ -29,7 +29,7 @@ public class MultiInputMR extends Configured implements Tool
 			// TODO Auto-generated method stub
 			 FileSplit fileSplit = (FileSplit) context.getInputSplit();
 			 inputFilePath = fileSplit.getPath().getName().toString();
-			 //System.out.println(inputFilePath);
+			 System.out.println(inputFilePath);
 			 
 			 //if(filenam-emplo)
 		   // 0,3,4
@@ -41,13 +41,14 @@ public class MultiInputMR extends Configured implements Tool
         {
 			
 			 //context.write(key, value);
+			System.out.println(value.toString());
         }
 		
 	}
     public int run(String[] args) throws Exception
     {
         Configuration conf = getConf();
-        Job job = Job.getInstance(conf, "Secondary Sorting");
+        Job job = Job.getInstance(conf, "Multi Input");
         
         job.setJarByClass(MultiInputMR.class);
         
@@ -60,7 +61,8 @@ public class MultiInputMR extends Configured implements Tool
         inputs = inputs.substring(0, inputs.length()-1);
         System.out.println(inputs);
         
-        FileInputFormat.setInputPaths(job, inputs);
+        
+        FileInputFormat.setInputPaths(job, inputs);        
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         
         job.setInputFormatClass(TextInputFormat.class);

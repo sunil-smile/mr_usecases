@@ -20,8 +20,8 @@ public class TextToSequenceDriver extends Configured implements Tool {
       System.out.printf("Two parameters are required for FormatConverterTextToSequenceDriver-<input dir> <output dir>\n");
       return -1;
     }
-
-    Job job = new Job(getConf());
+    Configuration conf = new Configuration();    
+    Job job = Job.getInstance(conf, "Text to Sequence");
     job.setJarByClass(TextToSequenceDriver.class);
     job.setJobName("Create Sequence File, from text file");
 

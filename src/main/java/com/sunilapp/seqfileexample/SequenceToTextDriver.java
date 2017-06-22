@@ -22,7 +22,8 @@ public class SequenceToTextDriver extends Configured implements Tool {
       return -1;
     }
 
-    Job job = new Job(getConf());
+    Configuration conf = new Configuration();    
+    Job job = Job.getInstance(conf, "Sequence to text");
     job.setJarByClass(SequenceToTextDriver.class);
     job.setJobName("Convert Sequence File and Output as Text");
 
